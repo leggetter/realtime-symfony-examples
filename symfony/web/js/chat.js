@@ -130,7 +130,22 @@ $(init);
 
 /***********************************************/
 
-var pusher = new Pusher('0cb24b6b414cc36a6ae6');
+// var pusher = new Pusher('0cb24b6b414cc36a6ae6');
+// 
+// var channel = pusher.subscribe('chat');
+// channel.bind('new-message', addMessage);
 
-var channel = pusher.subscribe('chat');
-channel.bind('new-message', addMessage);
+var conn = new WebSocket('ws://localhost:8080');
+conn.onopen = function(e) {
+    console.log("Connection established!");
+};
+
+conn.onmessage = function(e) {
+  var payload = JSON.parse(e.data);
+  
+  console.log(payload);
+  
+  if(payload.event === 'new-message') {
+    addMessage(payload.data)
+  }
+};

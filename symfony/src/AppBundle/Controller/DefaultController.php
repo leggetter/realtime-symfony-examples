@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\ChatMessage;
 
+use Predis\Client;
+
 class DefaultController extends Controller
 {
     /**
@@ -39,7 +41,7 @@ class DefaultController extends Controller
      */
     public function postMessage(Request $request)
     {
-      $pusher = $this->container->get('lopi_pusher.pusher');
+      // $pusher = $this->container->get('lopi_pusher.pusher');
       
       $message = new ChatMessage();
       $message
@@ -51,11 +53,20 @@ class DefaultController extends Controller
       $em->persist($message);
       $em->flush();
       
-      $pusher->trigger(
-        'chat',
-        'new-message',
-        $message
-      );
+      // $pusher->trigger(
+      //   'chat',
+      //   'new-message',
+      //   $message
+      // );
+      
+      $data = [
+        'event' => 'new-message',
+        'data' => $message
+      ];
+      $jsonContent = json_encode($data);
+      
+      $redis = new Client('tcp://127.0.0.1:6379');
+      $redis->publish('chat', $jsonContent);
       
       $response = new JsonResponse();
       $response->setData($message);
