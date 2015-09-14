@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="http://d3dhju7igb20wy.cloudfront.net/assets/0-4-0/all-the-things.css" />
+
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+
+  <div class="stripe no-padding-bottom numbered-stripe">
+    <div class="fixed wrapper">
+      <ol class="strong" start="1">
+        <li>
+          <div class="hexagon"></div>
+          <h2><b>{% block hero_heading %}{% endblock %}</b>
+            <small>{% block hero_sub_heading %}{% endblock %}</small>
+          </h2>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  {% block main %}{% endblock %}
+  
+  {% block javascripts %}{% endblock %}
+
+</body>
+
 </html>

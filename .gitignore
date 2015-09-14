@@ -37,3 +37,4 @@
 /composer.phar
 
 vendor
+app/data/sqlite.db
