@@ -5,6 +5,7 @@
     }
   },
   "require": {
-    "cboden/ratchet": "0.3.*"
+    "cboden/ratchet": "0.3.*",
+    "predis/predis-async": "dev-master"
   }
 }
