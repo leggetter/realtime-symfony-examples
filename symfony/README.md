@@ -6,15 +6,13 @@ An application used as part of a presentation for Symfony Live 2015:
 
 ## Setup
 
-### `app/config/parameters.yml`
+### `app/config/pusher.yml`
 
-Add Pusher configuration to your `parameters.yml` file:
+Rename `app/config/pusher.yml.example` to `pusher.yml` and add your Pusher application credentails:
 
 ```yml
 parameters:
-    ...
-    pusher_app_id: YOUR_APP_ID
-    pusher_app_key: YOUR_APP_KEY
-    pusher_app_secret: YOUR_APP_SECRET
-    ...
+    pusher.app_id: YOUR_APP_ID
+    pusher.app_key: YOUR_APP_KEY
+    pusher.app_secret: YOUR_APP_SECRET
 ```

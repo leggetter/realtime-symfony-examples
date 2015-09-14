@@ -1,0 +1,4 @@
+parameters:
+  pusher.app_id: YOUR_APP_ID
+  pusher.app_key: YOUR_APP_KEY
+  pusher.app_secret: YOUR_APP_SECRET
