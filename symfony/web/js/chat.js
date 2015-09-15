@@ -1,7 +1,7 @@
 // Log all Pusher JS info to console
-Pusher.log = function(msg) {
-  console.log(msg);
-};
+// Pusher.log = function(msg) {
+//   console.log(msg);
+// };
 
 // Store Twitter ID entered by User.
 var twitterUsername = null;
@@ -130,22 +130,44 @@ $(init);
 
 /***********************************************/
 
+// Pusher
 // var pusher = new Pusher('0cb24b6b414cc36a6ae6');
 // 
 // var channel = pusher.subscribe('chat');
 // channel.bind('new-message', addMessage);
 
-var conn = new WebSocket('ws://localhost:8080');
-conn.onopen = function(e) {
-    console.log("Connection established!");
-};
+// Ratchet
+// var conn = new WebSocket('ws://localhost:8080');
+// conn.onopen = function(e) {
+//     console.log("Connection established!");
+// };
+// 
+// conn.onmessage = function(e) {
+//   var payload = JSON.parse(e.data);
+//   console.log(payload);
+//   
+//   if(payload.event === 'new-message') {
+//     addMessage(payload.data)
+//   }
+// };
 
-conn.onmessage = function(e) {
-  var payload = JSON.parse(e.data);
-  
-  console.log(payload);
-  
+// Faye
+var client = new Faye.Client('http://localhost:8080/');
+client.subscribe('/chat', function(payload) {
   if(payload.event === 'new-message') {
-    addMessage(payload.data)
+    addMessage(payload.data);
+  }
+});
+
+var Logger = {
+  incoming: function(message, callback) {
+    console.log('incoming', message);
+    callback(message);
+  },
+  outgoing: function(message, callback) {
+    console.log('outgoing', message);
+    callback(message);
   }
 };
+
+client.addExtension(Logger);

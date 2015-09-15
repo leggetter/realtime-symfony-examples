@@ -1,0 +1,15 @@
+{
+  "name": "faye-symfony",
+  "version": "0.1.0",
+  "description": "Faye + Symfony via Redis example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pusher <support@pusher.com> (https://pusher.com)",
+  "license": "MIT",
+  "dependencies": {
+    "faye": "^1.1.2",
+    "ioredis": "^1.8.0"
+  }
+}
