@@ -12,19 +12,35 @@ use AppBundle\Entity\ChatMessage;
 
 use Predis\Client;
 
-class DefaultController extends Controller
+class ChatController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig');
+        return $this->render('chat/chat.html.twig');
     }
     
     /**
-     * @Route("/chat/messages")
+     * @Route("/chat/{framework}")
+     */
+    public function chat($framework)
+    {
+        return $this->render('chat/chat.html.twig', 
+                             ['framework' => $framework]);
+    }
+    
+    /**
+     * @Route("/faye", name="faye")
+     */
+    public function fayeChat(Request $request)
+    {
+        return $this->render('chat/faye.html.twig');
+    }
+    
+    /**
+     * @Route("/chat-api/messages")
      */
     public function getMessages() {
       $messages = $this->getDoctrine()
@@ -37,12 +53,10 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/chat/message")
+     * @Route("/chat-api/message")
      */
     public function postMessage(Request $request)
     {
-      // $pusher = $this->container->get('lopi_pusher.pusher');
-      
       $message = new ChatMessage();
       $message
         ->setUsername($request->get('username'))
@@ -53,20 +67,21 @@ class DefaultController extends Controller
       $em->persist($message);
       $em->flush();
       
-      // $pusher->trigger(
-      //   'chat',
-      //   'new-message',
-      //   $message
-      // );
+      $pusher = $this->container->get('lopi_pusher.pusher');
+      $pusher->trigger(
+        'chat',
+        'new-message',
+        $message
+      );
       
-      $data = [
-        'event' => 'new-message',
-        'data' => $message
-      ];
-      $jsonContent = json_encode($data);
-      
-      $redis = new Client('tcp://127.0.0.1:6379');
-      $redis->publish('chat', $jsonContent);
+      // $data = [
+      //   'event' => 'new-message',
+      //   'data' => $message
+      // ];
+      // $jsonContent = json_encode($data);
+      // 
+      // $redis = new Client('tcp://127.0.0.1:6379');
+      // $redis->publish('chat', $jsonContent);
       
       $response = new JsonResponse();
       $response->setData($message);

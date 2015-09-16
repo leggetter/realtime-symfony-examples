@@ -26,7 +26,7 @@ function init() {
  * Get all existing messages.
  */
 function fetchInitialMessages() {
-  $.get('/chat/messages').success(function(messages) {
+  $.get('/chat-api/messages').success(function(messages) {
     messages.forEach(addMessage);
   });
 }
@@ -76,7 +76,7 @@ function sendMessage() {
     username: twitterUsername,
     chat_text: messageText
   };
-  $.post('/chat/message', data).success(sendMessageSuccess);
+  $.post('/chat-api/message', data).success(sendMessageSuccess);
 
   // Ensure the normal browser event doesn't take place
   return false;
@@ -127,47 +127,3 @@ function createMessageEl() {
 }
 
 $(init);
-
-/***********************************************/
-
-// Pusher
-// var pusher = new Pusher('0cb24b6b414cc36a6ae6');
-// 
-// var channel = pusher.subscribe('chat');
-// channel.bind('new-message', addMessage);
-
-// Ratchet
-// var conn = new WebSocket('ws://localhost:8080');
-// conn.onopen = function(e) {
-//     console.log("Connection established!");
-// };
-// 
-// conn.onmessage = function(e) {
-//   var payload = JSON.parse(e.data);
-//   console.log(payload);
-//   
-//   if(payload.event === 'new-message') {
-//     addMessage(payload.data)
-//   }
-// };
-
-// Faye
-var client = new Faye.Client('http://localhost:8080/');
-client.subscribe('/chat', function(payload) {
-  if(payload.event === 'new-message') {
-    addMessage(payload.data);
-  }
-});
-
-var Logger = {
-  incoming: function(message, callback) {
-    console.log('incoming', message);
-    callback(message);
-  },
-  outgoing: function(message, callback) {
-    console.log('outgoing', message);
-    callback(message);
-  }
-};
-
-client.addExtension(Logger);
