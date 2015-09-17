@@ -67,21 +67,7 @@ class ChatController extends Controller
       $em->persist($message);
       $em->flush();
       
-      $pusher = $this->container->get('lopi_pusher.pusher');
-      $pusher->trigger(
-        'chat',
-        'new-message',
-        $message
-      );
-      
-      // $data = [
-      //   'event' => 'new-message',
-      //   'data' => $message
-      // ];
-      // $jsonContent = json_encode($data);
-      // 
-      // $redis = new Client('tcp://127.0.0.1:6379');
-      // $redis->publish('chat', $jsonContent);
+      // TODO: publish message
       
       $response = new JsonResponse();
       $response->setData($message);
