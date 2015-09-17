@@ -3,15 +3,22 @@
 //   console.log(msg);
 // };
 
+var storage = window.localStorage || { setItem: function(){}, getItem: function() {}};
+
 // Store Twitter ID entered by User.
-var twitterUsername = null;
+var twitterUsername = storage.getItem('username');
 
 function init() {
+  if(twitterUsername) {
+    setUpUser(twitterUsername);
+  }
+  
   // Twitter username button click and Enter press handler setup
   $('#try-it-out').click(setUpUser);
   $('#input-name').keyup(function(e) {
     if(e.keyCode === 13) {
-      setUpUser();
+      var username = $('#input-name').val();
+      setUpUser(username);
     }
   });
 
@@ -37,13 +44,13 @@ function fetchInitialMessages() {
  *
  * Also hide Twitter username input and show messages.
  */
-function setUpUser() {
-  var username = $('#input-name').val();
+function setUpUser(username) {
   if (!username) {
     return;
   }
 
   twitterUsername = username;
+  storage.setItem('username', twitterUsername);
 
   $('.twitter-username-capture').slideUp(function() {
     $('.chat-app').fadeIn();
