@@ -162,13 +162,12 @@ Messages will be sent to Pusher and on to the web browser client via the Pusher 
 Open up `symfony/src/AppBundle/Controller/ChatController.php` and ensure the following is uncommented:
 
 ```php
-// Uncomment this to use Pusher
-// $pusher = $this->container->get('lopi_pusher.pusher');
-// $pusher->trigger(
-//   'chat',
-//   'new-message',
-//   $message
-// );
+$pusher = $this->container->get('lopi_pusher.pusher');
+$pusher->trigger(
+  'chat',
+  'new-message',
+  $message
+);
 ```
 
 *Note: If you've previously used the Ratchet or Faye sample then you should comment out the lines that interact with Redis.*
