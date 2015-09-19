@@ -67,7 +67,22 @@ class ChatController extends Controller
       $em->persist($message);
       $em->flush();
       
-      // TODO: publish message
+      // Uncomment this to publish to redis and use Ratchet or Faye
+      // $data = [
+      //   'event' => 'new-message',
+      //   'data' => $message
+      // ];
+      // $jsonContent = json_encode($data);
+      // $redis = new Client('tcp://127.0.0.1:6379');
+      // $redis->publish('chat', $jsonContent);
+      
+      // Uncomment this to use Pusher
+      // $pusher = $this->container->get('lopi_pusher.pusher');
+      // $pusher->trigger(
+      //   'chat',
+      //   'new-message',
+      //   $message
+      // );
       
       $response = new JsonResponse();
       $response->setData($message);
