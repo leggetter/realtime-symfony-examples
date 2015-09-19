@@ -3,7 +3,7 @@
 This project demonstrates how to add real-time functionality to a [Symfony](http://symfony.com/) application using three different real-time technologies.
 
 1. [Ratchet (PHP)](http://socketo.me/)
-2. [Faye (Node)](faye.jcoglan.com)
+2. [Faye (Node)](http://faye.jcoglan.com)
 3. [Pusher (Hosted service)](https://pusher.com)
 
 These samples were originally prepare for a talk at Symfony Live London 2015. You can view the slides here:
