@@ -10,5 +10,8 @@ function pusherInit() {
 
   var channel = pusher.subscribe('chat');
   channel.bind('new-message', addMessage);
+  
+  // What's this? ... later!
+  channel.bind('incoming-call', addIncomingCall);
 
 }

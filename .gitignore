@@ -1,2 +1,3 @@
 symfony/app/config/pusher.yml
+symfony/app/config/nexmo.yml
 dump.rdb

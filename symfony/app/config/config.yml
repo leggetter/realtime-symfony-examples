@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: pusher.yml }
+    - { resource: nexmo.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -74,3 +75,8 @@ lopi_pusher:
     app_id: "%pusher.app_id%"
     key: "%pusher.app_key%"
     secret: "%pusher.app_secret%"
+    
+jhg_nexmo:
+    api_key:  "%nexmo.api_key%"
+    api_secret: "%nexmo.api_secret%"
+    from_name: "%nexmo.from_name%"

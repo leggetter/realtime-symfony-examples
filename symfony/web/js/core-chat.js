@@ -116,6 +116,23 @@ function addMessage(data) {
   scrollMessagesToBottom();
 }
 
+function addIncomingCall(data) {
+  // Create element from template and set values
+  var el = createMessageEl();
+  el.find('.message-body').html(data.number);
+  el.find('.author').hide();
+  el.find('.avatar img').hide();
+
+  // Utility to build nicely formatted time
+  el.find('.timestamp').text(strftime('%H:%M:%S %P', new Date(data.called_at.date)));
+  el.css('background-color', '#f1f5f7');
+
+  var messages = $('#messages');
+  messages.append(el)
+
+  scrollMessagesToBottom();
+}
+
 /**
  * Make sure the incoming message is shown.
  */

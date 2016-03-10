@@ -1,0 +1,4 @@
+parameters:
+  nexmo.api_key: YOUR_API_KEY
+  nexmo.api_secret: YOUR_API_SECRET
+  nexmo.from_name: Nexmo

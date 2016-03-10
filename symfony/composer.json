@@ -21,7 +21,8 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "laupifrpar/pusher-bundle": "^1.2",
-        "predis/predis": "^1.0"
+        "predis/predis": "^1.0",
+        "javihgil/nexmo-bundle": "^0.9.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

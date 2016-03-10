@@ -1,14 +1,23 @@
 # Real-Time & Symfony Samples
 
-This project demonstrates how to add real-time functionality to a [Symfony](http://symfony.com/) application using three different real-time technologies.
+This project demonstrates how to add real-time functionality to a [Symfony](http://symfony.com/) 2 application using three different real-time web technologies
 
 1. [Ratchet (PHP)](http://socketo.me/)
 2. [Faye (Node)](http://faye.jcoglan.com)
 3. [Pusher (Hosted service)](https://pusher.com)
 
-These samples were originally prepare for a talk at Symfony Live London 2015. You can view the slides here:
+It also adds support for sending an SMS with [Nexmo](https://www.nexmo.com).
 
-* [Real-Time Web Apps & Symfony. What are your options?](http://leggetter.github.io/realtime-symfony/)
+These samples were originally prepare for a talk at Symfony Live London 2015 and then for CloudConf 2016. You can view the resources here:
+
+* Real-time Web Apps & Symfony. What are your options? - Symfony Live 2015
+  * [Schedule](http://london2015.live.symfony.com/speakers#yui_3_17_2_1_1442233551897_235)
+  * [Slides](http://leggetter.github.io/realtime-symfony/)
+  * [Video](https://www.youtube.com/watch?v=LX2KoVK7mqA)
+* Real-time Web Apps & PHP. What are your options? - CloudConf 2016
+  * [Schedule](http://2016.cloudconf.it/schedule.html)
+  * [Slides](http://leggetter.github.io/realtime-php/)
+  * Video - coming soon
 
 ## Symfony App Setup
 
