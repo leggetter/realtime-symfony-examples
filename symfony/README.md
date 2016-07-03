@@ -28,11 +28,11 @@ parameters:
 
 If you also want to send SMS when a message is posted you will need to sign up for a [Nexmo account](https://www.nexmo.com) and add your credentials to a `nexmo.yml` configuration file.
 
-Rename `app/config/nexmo.yml.example` to `nexmo.yml` and add your Pusher application credentials:
+Rename `app/config/nexmo.yml.example` to `nexmo.yml` and add your Nexmo API credentials:
 
 ```yml
 parameters:
-    pusher.app_id: YOUR_APP_ID
-    pusher.app_key: YOUR_APP_KEY
-    pusher.app_secret: YOUR_APP_SECRET
+    nexmo.api_key: YOUR_API_KEY
+    nexmo.api_secret: YOUR_API_SECRET
+    nexmo.from_name: Nexmo
 ```
