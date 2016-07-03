@@ -62,7 +62,7 @@ class ChatController extends Controller
       // );
       
       // Uncomment to sent an SMS to any registered numbers.
-      $this->sendSmsToAll($message);
+      // $this->sendSmsToAll($message);
       
       $response = new JsonResponse();
       $response->setData($message);
